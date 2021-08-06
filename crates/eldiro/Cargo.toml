@@ -1,0 +1,20 @@
+cargo-features = ["edition2021"]
+
+[package]
+name = "eldiro"
+version = "0.1.0"
+authors = ["Devin Alexander Torres <d@devinus.io>"]
+license = "0BSD"
+edition = "2021"
+
+[dependencies]
+ast = {path = "../ast"}
+hir = {path = "../hir"}
+parser = {path = "../parser"}
+
+[dev-dependencies]
+criterion = { version = "0.3", features = ["real_blackbox", "async_futures", "html_reports"] }
+
+[[bench]]
+name = "parser"
+harness = false

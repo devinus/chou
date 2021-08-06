@@ -1,0 +1,15 @@
+cargo-features = ["edition2021"]
+
+[package]
+name = "ast"
+version = "0.1.0"
+authors = ["Devin Alexander Torres <d@devinus.io>"]
+license = "0BSD"
+edition = "2021"
+
+[dependencies]
+syntax = {path = "../syntax"}
+text-size = "1.1.0"
+
+[dev-dependencies]
+parser = {path = "../parser"}
