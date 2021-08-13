@@ -1,1 +1,3 @@
 artifacts/
+corpus/*
+!corpus/example

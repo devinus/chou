@@ -1,7 +1,7 @@
 cargo-features = ["edition2021"]
 
 [package]
-name = "eldiro"
+name = "chou"
 version = "0.1.0"
 authors = ["Devin Alexander Torres <d@devinus.io>"]
 license = "0BSD"
@@ -13,7 +13,7 @@ hir = {path = "../hir"}
 parser = {path = "../parser"}
 
 [dev-dependencies]
-criterion = { version = "0.3", features = ["real_blackbox", "async_futures", "html_reports"] }
+criterion = { version = "0.3.5", features = ["real_blackbox", "async_futures", "html_reports"] }
 
 [[bench]]
 name = "parser"

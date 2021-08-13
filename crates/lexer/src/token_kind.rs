@@ -1,7 +1,7 @@
 use logos::Logos;
 use std::fmt;
 
-#[derive(Debug, Copy, Clone, PartialEq, Logos)]
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Logos)]
 #[repr(u16)]
 pub enum TokenKind {
     #[regex("[ \t\n]+")]

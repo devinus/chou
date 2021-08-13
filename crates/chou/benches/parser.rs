@@ -8,7 +8,7 @@ fn bench_parse(input: &str) -> Vec<hir::Stmt> {
     assert!(errors.is_empty());
 
     let root = ast::Root::cast(syntax).unwrap();
-    let (_database, stmts) = hir::lower(root);
+    let (_database, stmts) = hir::lower(&root);
     assert!(!stmts.is_empty());
 
     stmts

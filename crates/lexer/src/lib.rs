@@ -1,3 +1,5 @@
+#![deny(clippy::all)]
+
 mod token_kind;
 pub use token_kind::TokenKind;
 

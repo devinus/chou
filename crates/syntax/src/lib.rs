@@ -1,8 +1,10 @@
+#![deny(clippy::all)]
+
 use lexer::TokenKind;
 use num_derive::{FromPrimitive, ToPrimitive};
 use num_traits::{FromPrimitive, ToPrimitive};
 
-#[derive(Debug, Copy, Clone, PartialEq, FromPrimitive, ToPrimitive)]
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, FromPrimitive, ToPrimitive)]
 #[repr(u16)]
 pub enum SyntaxKind {
     Whitespace,
@@ -54,14 +56,14 @@ impl From<TokenKind> for SyntaxKind {
     }
 }
 
-pub type SyntaxNode = rowan::SyntaxNode<EldiroLanguage>;
-pub type SyntaxElement = rowan::SyntaxElement<EldiroLanguage>;
-pub type SyntaxToken = rowan::SyntaxToken<EldiroLanguage>;
+pub type SyntaxNode = rowan::SyntaxNode<ChouLanguage>;
+pub type SyntaxElement = rowan::SyntaxElement<ChouLanguage>;
+pub type SyntaxToken = rowan::SyntaxToken<ChouLanguage>;
 
 #[derive(Debug, Copy, Clone, Ord, PartialOrd, Eq, PartialEq, Hash)]
-pub enum EldiroLanguage {}
+pub enum ChouLanguage {}
 
-impl rowan::Language for EldiroLanguage {
+impl rowan::Language for ChouLanguage {
     type Kind = SyntaxKind;
 
     #[inline]

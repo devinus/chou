@@ -1,3 +1,5 @@
+#![deny(clippy::all)]
+
 mod event;
 mod grammar;
 mod parser;

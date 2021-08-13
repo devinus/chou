@@ -43,14 +43,14 @@ pub fn validate(node: &SyntaxNode) -> Vec<ValidationError> {
 
     for node in node.descendants() {
         if let Some(literal) = Literal::cast(node) {
-            validate_literal(literal, &mut errors)
+            validate_literal(&literal, &mut errors);
         }
     }
 
     errors
 }
 
-fn validate_literal(literal: Literal, errors: &mut Vec<ValidationError>) {
+fn validate_literal(literal: &Literal, errors: &mut Vec<ValidationError>) {
     if literal.parse().is_none() {
         errors.push(ValidationError {
             kind: ValidationErrorKind::NumberLiteralTooLarge,
