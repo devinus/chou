@@ -9,6 +9,7 @@ pub(crate) struct Marker {
 }
 
 impl Marker {
+    #[inline]
     pub(crate) fn new(pos: usize) -> Self {
         Self {
             pos,

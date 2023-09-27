@@ -1,9 +1,11 @@
+cargo-features = ["edition2024"]
+
 [package]
 name = "fuzz"
 version = "0.1.0"
 authors = ["Devin Alexander Torres <d@devinus.io>"]
 license = "0BSD"
-edition = "2021"
+edition = "2024"
 
 [package.metadata]
 cargo-fuzz = true

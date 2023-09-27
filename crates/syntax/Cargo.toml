@@ -1,12 +1,14 @@
+cargo-features = ["edition2024"]
+
 [package]
 name = "syntax"
 version = "0.1.0"
 authors = ["Devin Alexander Torres <d@devinus.io>"]
 license = "0BSD"
-edition = "2021"
+edition = "2024"
 
 [dependencies]
 lexer = { path = "../lexer" }
-num-derive = "0.4.0"
-num-traits = "0.2.16"
-rowan = "0.15.11"
+num-derive = "0.4.2"
+num-traits = "0.2.19"
+rowan = "0.15.15"

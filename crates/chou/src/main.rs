@@ -1,40 +1,50 @@
 use parser::parse;
-use std::io::{self, Write};
+use reedline::{DefaultPrompt, DefaultPromptSegment, Reedline, Signal};
+use std::io::Result;
 
-fn main() -> io::Result<()> {
-    let stdin = io::stdin();
-    let mut stdout = io::stdout();
-
-    let mut input = String::new();
+fn main() -> Result<()> {
+    let mut line_editor = Reedline::create();
+    let prompt = DefaultPrompt::new(DefaultPromptSegment::Empty, DefaultPromptSegment::Empty);
 
     loop {
-        write!(stdout, "→ ")?;
-        stdout.flush()?;
+        match line_editor.read_line(&prompt) {
+            Ok(Signal::Success(input)) => {
+                let parse = parse(&input);
+                println!("{}", parse.debug_tree());
 
-        stdin.read_line(&mut input)?;
+                let syntax = parse.syntax();
 
-        let parse = parse(&input);
-        println!("{}", parse.debug_tree());
+                for error in ast::validation::validate(&syntax) {
+                    println!("{}", error);
+                }
 
-        let syntax = parse.syntax();
+                let root = ast::Root::cast(syntax).unwrap();
+                let var_defs = root
+                    .stmts()
+                    .filter_map(|stmt| {
+                        if let ast::Stmt::VariableDef(def) = stmt {
+                            Some(def)
+                        } else {
+                            None
+                        }
+                    })
+                    .collect::<Vec<_>>();
 
-        for error in ast::validation::validate(&syntax) {
-            println!("{}", error);
+                dbg!(var_defs);
+
+                dbg!(hir::lower(&root));
+            }
+            Ok(Signal::CtrlC) => {
+                continue;
+            }
+            Ok(Signal::CtrlD) => {
+                break;
+            }
+            event => {
+                println!("Event: {:?}", event);
+            }
         }
-
-        let root = ast::Root::cast(syntax).unwrap();
-
-        dbg!(root
-            .stmts()
-            .filter_map(|stmt| if let ast::Stmt::VariableDef(var_def) = stmt {
-                Some(var_def.value())
-            } else {
-                None
-            })
-            .collect::<Vec<_>>());
-
-        dbg!(hir::lower(&root));
-
-        input.clear();
     }
+
+    Ok(())
 }
