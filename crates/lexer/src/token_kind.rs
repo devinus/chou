@@ -49,7 +49,6 @@ pub enum TokenKind {
     #[regex("#.*")]
     Comment,
 
-    #[error]
     Error,
 }
 
@@ -184,5 +183,10 @@ mod tests {
     #[test]
     fn lex_comment() {
         check("# foo", TokenKind::Comment);
+    }
+
+    #[test]
+    fn lex_error() {
+        check("$", TokenKind::Error);
     }
 }

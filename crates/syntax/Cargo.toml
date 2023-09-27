@@ -1,5 +1,3 @@
-cargo-features = ["edition2021"]
-
 [package]
 name = "syntax"
 version = "0.1.0"
@@ -8,7 +6,7 @@ license = "0BSD"
 edition = "2021"
 
 [dependencies]
-lexer = {path = "../lexer"}
-num-derive = { version = "0.3.3", features = ["full-syntax"] }
-num-traits = "0.2.14"
-rowan = "0.12.6"
+lexer = { path = "../lexer" }
+num-derive = "0.4.0"
+num-traits = "0.2.16"
+rowan = "0.15.11"

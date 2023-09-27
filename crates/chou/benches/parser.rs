@@ -1,4 +1,4 @@
-use criterion::{black_box, criterion_group, criterion_main, Criterion};
+use criterion::{criterion_group, criterion_main, Criterion};
 use parser::parse;
 
 fn bench_parse(input: &str) -> Vec<hir::Stmt> {
@@ -20,7 +20,9 @@ pub fn criterion_benchmark(c: &mut Criterion) {
     // Configure Criterion.rs to detect smaller differences and increase sample
     // size to improve precision and counteract the resulting noise.
     group.significance_level(0.1).sample_size(500);
-    group.bench_function("binary_expression", |b| b.iter(|| black_box(bench_parse("1+2*3-(4/5)"))));
+    group.bench_function("literal", |b| b.iter(|| bench_parse("999")));
+    group.bench_function("binary_expression", |b| b.iter(|| bench_parse("1+2*3-(4/5)")));
+    group.bench_function("variable_definition", |b| b.iter(|| bench_parse("let foo = 10")));
     group.finish();
 }
 
