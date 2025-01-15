@@ -6,6 +6,7 @@ use rowan::{GreenNodeBuilder, Language};
 use std::mem;
 use syntax::ChouLanguage;
 
+#[derive(Debug)]
 pub(crate) struct Sink<'t, 'input> {
     builder: GreenNodeBuilder<'static>,
     tokens: &'t [Token<'input>],

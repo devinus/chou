@@ -3,6 +3,7 @@ use crate::event::Event;
 use drop_bomb::DropBomb;
 use syntax::SyntaxKind;
 
+#[derive(Debug)]
 pub(crate) struct Marker {
     pos: usize,
     bomb: DropBomb,
@@ -34,6 +35,7 @@ impl Marker {
     }
 }
 
+#[derive(Debug)]
 pub(crate) struct CompletedMarker {
     pos: usize,
 }

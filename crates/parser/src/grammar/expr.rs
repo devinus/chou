@@ -60,6 +60,7 @@ fn lhs(p: &mut Parser) -> Option<CompletedMarker> {
     Some(cm)
 }
 
+#[derive(Debug)]
 #[repr(u8)]
 enum BinaryOp {
     Add,
@@ -78,6 +79,7 @@ impl BinaryOp {
     }
 }
 
+#[derive(Debug)]
 enum UnaryOp {
     Neg,
 }

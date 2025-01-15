@@ -23,6 +23,7 @@ pub fn parse(input: &str) -> Parse {
     sink.finish()
 }
 
+#[derive(Debug)]
 pub struct Parse {
     green_node: GreenNode,
     errors: Vec<ParseError>,
