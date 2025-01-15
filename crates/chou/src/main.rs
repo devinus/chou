@@ -1,3 +1,5 @@
+#![deny(clippy::all)]
+
 use parser::parse;
 use reedline::{DefaultPrompt, DefaultPromptSegment, Reedline, Signal};
 use std::io::Result;

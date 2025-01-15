@@ -1,3 +1,5 @@
+#![deny(clippy::all)]
+
 use crate::Literal;
 use std::fmt;
 use syntax::SyntaxNode;

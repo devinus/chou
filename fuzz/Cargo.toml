@@ -1,5 +1,3 @@
-cargo-features = ["edition2024"]
-
 [package]
 name = "fuzz"
 version = "0.1.0"
@@ -19,5 +17,5 @@ path = "fuzz_targets/main.rs"
 [dependencies]
 ast = { path = "../crates/ast" }
 hir = { path = "../crates/hir" }
-libfuzzer-sys = "0.4.7"
+libfuzzer-sys = "0.4.8"
 parser = { path = "../crates/parser" }
