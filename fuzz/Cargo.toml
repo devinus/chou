@@ -2,7 +2,7 @@
 name = "fuzz"
 version = "0.1.0"
 authors = ["Devin Alexander Torres <d@devinus.io>"]
-license = "0BSD"
+license = "MIT-0"
 edition = "2024"
 
 [package.metadata]
@@ -17,5 +17,5 @@ path = "fuzz_targets/main.rs"
 [dependencies]
 ast = { path = "../crates/ast" }
 hir = { path = "../crates/hir" }
-libfuzzer-sys = "0.4.8"
+libfuzzer-sys = "0.4.9"
 parser = { path = "../crates/parser" }

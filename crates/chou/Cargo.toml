@@ -2,7 +2,7 @@
 name = "chou"
 version = "0.1.0"
 authors = ["Devin Alexander Torres <d@devinus.io>"]
-license = "0BSD"
+license = "MIT-0"
 edition = "2024"
 
 [dependencies]
@@ -10,10 +10,10 @@ ast = { path = "../ast" }
 hir = { path = "../hir" }
 parser = { path = "../parser" }
 # rustyline = "12.0.0"
-reedline = { version = "0.38.0", features = ["external_printer"] }
+reedline = { version = "0.40.0", features = ["external_printer"] }
 
 [dev-dependencies]
-criterion = { version = "0.5.1", features = ["async_futures", "html_reports"] }
+criterion = { version = "0.6.0", features = ["async_futures", "html_reports"] }
 
 [[bench]]
 name = "parser"

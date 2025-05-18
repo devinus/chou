@@ -2,7 +2,7 @@
 name = "ast"
 version = "0.1.0"
 authors = ["Devin Alexander Torres <d@devinus.io>"]
-license = "0BSD"
+license = "MIT-0"
 edition = "2024"
 
 [dependencies]

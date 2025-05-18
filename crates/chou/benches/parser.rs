@@ -2,7 +2,7 @@ use criterion::{criterion_group, criterion_main, Criterion};
 use parser::parse;
 
 fn bench_parse(input: &str) -> Vec<hir::Stmt> {
-    let parse = parse(&input);
+    let parse = parse(input);
     let syntax = parse.syntax();
     let errors = ast::validation::validate(&syntax);
     assert!(errors.is_empty());
