@@ -30,16 +30,12 @@ pub struct Parse {
 
 impl Parse {
     pub fn debug_tree(&self) -> String {
-        let mut s = String::new();
-
-        let tree = &format!("{:#?}", self.syntax());
+        let tree = format!("{:#?}", self.syntax());
 
         // We cut off the last byte because formatting the SyntaxNode adds on a newline at the end.
-        s.push_str(&tree[..tree.len() - 1]);
+        let mut s = tree.trim_end().to_string();
 
-        for error in &self.errors {
-            s.push_str(&format!("\n{error}"));
-        }
+        s.extend(self.errors.iter().map(|error| format!("\n{error}")));
 
         s
     }
