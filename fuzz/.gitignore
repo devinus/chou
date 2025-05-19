@@ -1,3 +1,5 @@
-artifacts/
-corpus/*
-!corpus/example
+!corpus/main/example
+artifacts
+corpus
+coverage
+target

@@ -27,7 +27,6 @@ impl<'a> Iterator for Lexer<'a> {
     fn next(&mut self) -> Option<Self::Item> {
         let kind = self.inner.next()?.unwrap_or(TokenKind::Error);
         let text = self.inner.slice();
-
         let range = {
             let StdRange { start, end } = self.inner.span();
             let start = TextSize::try_from(start).unwrap();
@@ -40,7 +39,7 @@ impl<'a> Iterator for Lexer<'a> {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Token<'a> {
     pub kind: TokenKind,
     pub text: &'a str,

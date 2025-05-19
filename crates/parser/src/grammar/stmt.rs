@@ -10,6 +10,7 @@ pub(super) fn stmt(p: &mut Parser) -> Option<CompletedMarker> {
 
 fn variable_def(p: &mut Parser) -> CompletedMarker {
     assert!(p.at(TokenKind::LetKw));
+
     let m = p.start();
     p.bump();
 

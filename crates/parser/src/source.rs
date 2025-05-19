@@ -1,7 +1,7 @@
 use lexer::{Token, TokenKind};
 use text_size::TextRange;
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub(crate) struct Source<'t, 'input> {
     tokens: &'t [Token<'input>],
     cursor: usize,

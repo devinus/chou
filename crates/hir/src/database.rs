@@ -2,7 +2,7 @@ use crate::{BinaryOp, Expr, Stmt, UnaryOp};
 use la_arena::Arena;
 use syntax::SyntaxKind;
 
-#[derive(Debug, PartialEq, Default)]
+#[derive(Debug, PartialEq, Eq, Default)]
 pub struct Database {
     exprs: Arena<Expr>,
 }
@@ -93,6 +93,7 @@ mod tests {
             ast::Stmt::Expr(ast) => ast,
             _ => unreachable!(),
         };
+
         let mut database = Database::default();
         let hir = database.lower_expr(Some(ast));
 
@@ -143,9 +144,9 @@ mod tests {
         check_expr(
             "1 + 2",
             Expr::Binary {
+                op: BinaryOp::Add,
                 lhs,
                 rhs,
-                op: BinaryOp::Add,
             },
             Database { exprs },
         );
@@ -160,9 +161,9 @@ mod tests {
         check_expr(
             "10 -",
             Expr::Binary {
+                op: BinaryOp::Sub,
                 lhs,
                 rhs,
-                op: BinaryOp::Sub,
             },
             Database { exprs },
         );
@@ -190,8 +191,8 @@ mod tests {
         check_expr(
             "-10",
             Expr::Unary {
-                expr: ten,
                 op: UnaryOp::Neg,
+                expr: ten,
             },
             Database { exprs },
         );
@@ -205,8 +206,8 @@ mod tests {
         check_expr(
             "-",
             Expr::Unary {
-                expr,
                 op: UnaryOp::Neg,
+                expr,
             },
             Database { exprs },
         );

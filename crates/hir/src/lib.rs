@@ -51,6 +51,5 @@ pub enum UnaryOp {
 pub fn lower(ast: &ast::Root) -> (Database, Vec<Stmt>) {
     let mut db = Database::default();
     let stmts = ast.stmts().filter_map(|stmt| db.lower_stmt(stmt)).collect();
-
     (db, stmts)
 }

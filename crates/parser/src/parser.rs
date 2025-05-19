@@ -11,7 +11,7 @@ use marker::Marker;
 use std::mem;
 use syntax::SyntaxKind;
 
-const RECOVERY_SET: [TokenKind; 1] = [TokenKind::LetKw];
+const RECOVERY_SET: &[TokenKind; 1] = &[TokenKind::LetKw];
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub(crate) struct Parser<'t, 'input> {
@@ -70,7 +70,7 @@ impl<'t, 'input> Parser<'t, 'input> {
             range,
         }));
 
-        if !self.at_set(&RECOVERY_SET) && !self.at_end() {
+        if !self.at_set(RECOVERY_SET) && !self.at_end() {
             let m = self.start();
             self.bump();
             m.complete(self, SyntaxKind::Error);

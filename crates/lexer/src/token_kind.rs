@@ -4,7 +4,7 @@ use std::fmt;
 #[derive(Debug, Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Logos)]
 #[repr(u16)]
 pub enum TokenKind {
-    #[regex("[ \t\n]+")]
+    #[regex(r"[ \t\n]+")]
     Whitespace,
 
     #[token("fn")]
@@ -13,10 +13,10 @@ pub enum TokenKind {
     #[token("let")]
     LetKw,
 
-    #[regex("[A-Za-z][A-Za-z0-9]*")]
+    #[regex(r"[A-Za-z][A-Za-z0-9]*")]
     Ident,
 
-    #[regex("[0-9]+")]
+    #[regex(r"[0-9]+")]
     Number,
 
     #[token("+")]
@@ -46,7 +46,7 @@ pub enum TokenKind {
     #[token("}")]
     RBrace,
 
-    #[regex("#.*")]
+    #[regex(r"#.*")]
     Comment,
 
     Error,
@@ -89,7 +89,6 @@ mod tests {
 
     fn check(input: &str, kind: TokenKind) {
         let mut lexer = Lexer::new(input);
-
         let token = lexer.next().unwrap();
         assert_eq!(token.kind, kind);
         assert_eq!(token.text, input);

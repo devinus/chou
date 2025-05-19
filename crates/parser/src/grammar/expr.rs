@@ -23,7 +23,6 @@ fn expr_binding_power(p: &mut Parser, minimum_binding_power: u8) -> Option<Compl
         };
 
         let (left_binding_power, right_binding_power) = op.binding_power();
-
         if left_binding_power < minimum_binding_power {
             break;
         }

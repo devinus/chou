@@ -4,15 +4,20 @@ version = "0.1.0"
 authors = ["Devin Alexander Torres <d@devinus.io>"]
 license = "MIT-0"
 edition = "2024"
+publish = false
 
 [package.metadata]
 cargo-fuzz = true
 
 [workspace]
+members = ["."]
 
 [[bin]]
 name = "main"
 path = "fuzz_targets/main.rs"
+test = false
+doc = false
+bench = false
 
 [dependencies]
 ast = { path = "../crates/ast" }
