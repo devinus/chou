@@ -1,8 +1,29 @@
+#![deny(clippy::all)]
+
 pub mod validation;
 
 use syntax::{SyntaxElement, SyntaxKind, SyntaxNode, SyntaxToken};
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum Stmt {
+    VariableDef(VariableDef),
+    Expr(Expr),
+}
+
+impl Stmt {
+    #[inline]
+    pub fn cast(node: SyntaxNode) -> Option<Self> {
+        let result = match node.kind() {
+            SyntaxKind::VariableDef => Self::VariableDef(VariableDef(node)),
+            _ => Self::Expr(Expr::cast(node)?),
+        };
+
+        Some(result)
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+#[repr(transparent)]
 pub struct Root(SyntaxNode);
 
 impl Root {
@@ -21,25 +42,8 @@ impl Root {
     }
 }
 
-#[derive(Debug)]
-pub enum Stmt {
-    VariableDef(VariableDef),
-    Expr(Expr),
-}
-
-impl Stmt {
-    #[inline]
-    pub fn cast(node: SyntaxNode) -> Option<Self> {
-        let result = match node.kind() {
-            SyntaxKind::VariableDef => Self::VariableDef(VariableDef(node)),
-            _ => Self::Expr(Expr::cast(node)?),
-        };
-
-        Some(result)
-    }
-}
-
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
+#[repr(transparent)]
 pub struct VariableDef(SyntaxNode);
 
 impl VariableDef {
@@ -57,7 +61,7 @@ impl VariableDef {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Expr {
     BinaryExpr(BinaryExpr),
     Literal(Literal),
@@ -82,7 +86,8 @@ impl Expr {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
+#[repr(transparent)]
 pub struct BinaryExpr(SyntaxNode);
 
 impl BinaryExpr {
@@ -110,7 +115,8 @@ impl BinaryExpr {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
+#[repr(transparent)]
 pub struct Literal(SyntaxNode);
 
 impl Literal {
@@ -129,7 +135,8 @@ impl Literal {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
+#[repr(transparent)]
 pub struct ParenExpr(SyntaxNode);
 
 impl ParenExpr {
@@ -139,7 +146,8 @@ impl ParenExpr {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
+#[repr(transparent)]
 pub struct UnaryExpr(SyntaxNode);
 
 impl UnaryExpr {
@@ -157,7 +165,8 @@ impl UnaryExpr {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
+#[repr(transparent)]
 pub struct VariableRef(SyntaxNode);
 
 impl VariableRef {

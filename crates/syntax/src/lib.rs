@@ -4,7 +4,7 @@ use lexer::TokenKind;
 use num_derive::{FromPrimitive, ToPrimitive};
 use num_traits::{FromPrimitive, ToPrimitive};
 
-#[derive(Debug, Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, FromPrimitive, ToPrimitive)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, FromPrimitive, ToPrimitive)]
 #[repr(u16)]
 pub enum SyntaxKind {
     Whitespace,
@@ -60,7 +60,7 @@ pub type SyntaxNode = rowan::SyntaxNode<ChouLanguage>;
 pub type SyntaxElement = rowan::SyntaxElement<ChouLanguage>;
 pub type SyntaxToken = rowan::SyntaxToken<ChouLanguage>;
 
-#[derive(Debug, Copy, Clone, Ord, PartialOrd, Eq, PartialEq, Hash)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum ChouLanguage {}
 
 impl rowan::Language for ChouLanguage {

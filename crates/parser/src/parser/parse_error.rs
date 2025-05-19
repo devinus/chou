@@ -2,7 +2,7 @@ use lexer::TokenKind;
 use std::fmt;
 use text_size::TextRange;
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub(crate) struct ParseError {
     pub(super) expected: Vec<TokenKind>,
     pub(super) found: Option<TokenKind>,
@@ -24,16 +24,16 @@ impl fmt::Display for ParseError {
 
         for (idx, expected_kind) in self.expected.iter().enumerate() {
             if is_first(idx) {
-                write!(f, "{}", expected_kind)?;
+                write!(f, "{expected_kind}")?;
             } else if is_last(idx) {
-                write!(f, " or {}", expected_kind)?;
+                write!(f, " or {expected_kind}")?;
             } else {
-                write!(f, ", {}", expected_kind)?;
+                write!(f, ", {expected_kind}")?;
             }
         }
 
         if let Some(found) = self.found {
-            write!(f, ", but found {}", found)?;
+            write!(f, ", but found {found}")?;
         }
 
         Ok(())
@@ -61,7 +61,7 @@ mod tests {
             },
         };
 
-        assert_eq!(format!("{}", error), output);
+        assert_eq!(format!("{error}"), output);
     }
 
     #[test]

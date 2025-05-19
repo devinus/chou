@@ -7,7 +7,7 @@ use logos::Logos;
 use std::ops::Range as StdRange;
 use text_size::{TextRange, TextSize};
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Lexer<'a> {
     inner: logos::Lexer<'a, TokenKind>,
 }
@@ -40,7 +40,7 @@ impl<'a> Iterator for Lexer<'a> {
     }
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Token<'a> {
     pub kind: TokenKind,
     pub text: &'a str,

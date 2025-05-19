@@ -23,7 +23,7 @@ pub fn parse(input: &str) -> Parse {
     sink.finish()
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Parse {
     green_node: GreenNode,
     errors: Vec<ParseError>,
@@ -39,7 +39,7 @@ impl Parse {
         s.push_str(&tree[0..tree.len() - 1]);
 
         for error in &self.errors {
-            s.push_str(&format!("\n{}", error));
+            s.push_str(&format!("\n{error}"));
         }
 
         s

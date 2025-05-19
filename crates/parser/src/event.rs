@@ -1,7 +1,7 @@
 use crate::parser::ParseError;
 use syntax::SyntaxKind;
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub(crate) enum Event {
     StartNode {
         kind: SyntaxKind,

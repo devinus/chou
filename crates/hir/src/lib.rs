@@ -8,13 +8,13 @@ use smol_str::SmolStr;
 
 type ExprIdx = Idx<Expr>;
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Stmt {
     VariableDef { name: SmolStr, value: Expr },
     Expr(Expr),
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Expr {
     Missing,
     Binary {
@@ -35,7 +35,7 @@ pub enum Expr {
     },
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub enum BinaryOp {
     Add,
     Sub,
@@ -43,7 +43,7 @@ pub enum BinaryOp {
     Div,
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum UnaryOp {
     Neg,
 }

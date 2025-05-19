@@ -39,7 +39,7 @@ fn handle_input(input: &str) {
 
     let syntax = parse.syntax();
     for error in ast::validation::validate(&syntax) {
-        println!("{}", error);
+        println!("{error}");
     }
 
     let root = ast::Root::cast(syntax).unwrap();
@@ -61,7 +61,7 @@ fn repl(mut line_editor: Reedline, prompt: &DefaultPrompt) -> Result<()> {
             Ok(Signal::Success(input)) => handle_input(&input),
             Ok(Signal::CtrlC) => continue,
             Ok(Signal::CtrlD) => break,
-            event => println!("Event: {:?}", event),
+            event => println!("Event: {event:?}"),
         }
     }
 

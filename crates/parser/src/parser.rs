@@ -13,7 +13,7 @@ use syntax::SyntaxKind;
 
 const RECOVERY_SET: [TokenKind; 1] = [TokenKind::LetKw];
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub(crate) struct Parser<'t, 'input> {
     source: Source<'t, 'input>,
     events: Vec<Event>,

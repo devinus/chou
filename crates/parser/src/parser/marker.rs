@@ -35,7 +35,7 @@ impl Marker {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub(crate) struct CompletedMarker {
     pos: usize,
 }

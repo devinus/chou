@@ -1,11 +1,9 @@
-#![deny(clippy::all)]
-
 use crate::Literal;
 use std::fmt;
 use syntax::SyntaxNode;
 use text_size::TextRange;
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct ValidationError {
     kind: ValidationErrorKind,
     range: TextRange,
@@ -23,7 +21,7 @@ impl fmt::Display for ValidationError {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 enum ValidationErrorKind {
     NumberLiteralTooLarge,
 }
