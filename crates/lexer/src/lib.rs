@@ -31,7 +31,6 @@ impl<'a> Iterator for Lexer<'a> {
             let StdRange { start, end } = self.inner.span();
             let start = TextSize::try_from(start).unwrap();
             let end = TextSize::try_from(end).unwrap();
-
             TextRange::new(start, end)
         };
 

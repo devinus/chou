@@ -20,9 +20,9 @@ pub fn criterion_benchmark(c: &mut Criterion) {
     // Configure Criterion.rs to detect smaller differences and increase sample
     // size to improve precision and counteract the resulting noise.
     group.significance_level(0.1).sample_size(1000);
-    group.bench_function("literal", |b| b.iter(|| bench_parse("999")));
+    group.bench_function("literal", |b| b.iter(|| bench_parse("123")));
     group.bench_function("binary_expression", |b| {
-        b.iter(|| bench_parse("1+2*3-(4/5)"))
+        b.iter(|| bench_parse("1 + 2 * 3 - (4 / 5)"))
     });
     group.bench_function("variable_definition", |b| {
         b.iter(|| bench_parse("let foo = 10"))

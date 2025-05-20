@@ -1,5 +1,6 @@
 #![deny(clippy::all)]
 
+use mimalloc::MiMalloc;
 use parser::parse;
 use reedline::{
     ColumnarMenu, DefaultCompleter, DefaultHinter, Emacs, ExampleHighlighter, KeyCode,
@@ -10,11 +11,14 @@ use reedline::{
 use std::borrow::Cow;
 use std::io::Result;
 
-pub static DEFAULT_PROMPT_INDICATOR: &str = ">>> ";
-pub static DEFAULT_MULTILINE_INDICATOR: &str = "... ";
+#[global_allocator]
+static GLOBAL: MiMalloc = MiMalloc;
+
+static DEFAULT_PROMPT_INDICATOR: &str = ">>> ";
+static DEFAULT_MULTILINE_INDICATOR: &str = "... ";
 
 #[derive(Clone, Copy, Debug)]
-pub struct ChouPrompt;
+struct ChouPrompt;
 
 impl Prompt for ChouPrompt {
     fn render_prompt_left(&self) -> Cow<str> {

@@ -8,6 +8,7 @@ edition = "2024"
 [dependencies]
 ast = { path = "../ast" }
 hir = { path = "../hir" }
+mimalloc = "0.1.46"
 parser = { path = "../parser" }
 reedline = "0.40.0"
 

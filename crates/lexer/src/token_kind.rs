@@ -4,7 +4,7 @@ use std::fmt;
 #[derive(Debug, Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Logos)]
 #[repr(u16)]
 pub enum TokenKind {
-    #[regex(r"[ \t\n]+")]
+    #[regex(r"[[:space:]]+")]
     Whitespace,
 
     #[token("fn")]
@@ -13,10 +13,10 @@ pub enum TokenKind {
     #[token("let")]
     LetKw,
 
-    #[regex(r"[A-Za-z][A-Za-z0-9]*")]
+    #[regex(r"[[:alpha:]][[:alnum:]]*")]
     Ident,
 
-    #[regex(r"[0-9]+")]
+    #[regex(r"[[:digit:]]+")]
     Number,
 
     #[token("+")]
